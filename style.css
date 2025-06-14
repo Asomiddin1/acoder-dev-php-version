@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.main_bg {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("https://watermark.lovepik.com/photo/20211201/large/lovepik-business-women-working-overtime-picture_501352583.jpg");
+  background-attachment: fixed;
+  background-position: center;
+}
+
+
+.blue_effect_bg{
+   background-color: rgba(54, 38, 173, 0.379);
+}
+
+
+.nav_bg {
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+  }
+  .nav_scrolled {
+    background: #24c6dc;
+    background: -webkit-linear-gradient(to right, rgb(107, 6, 202), #514a9d);
+    background: linear-gradient(to right, rgb(119, 0, 231), #514a9d);
+  }
+
+.sidebar_link:hover {
+  color: #fff;
+  background: #24c6dc;
+  background: -webkit-linear-gradient(to right, rgb(107, 6, 202), #514a9d);
+  background: linear-gradient(to right, #7700e7, #514a9d);
+}
+.all_main_bg {
+  background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);
+}
+
+.auth_bg {
+    background-color: #c9d6ff;
+    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+}
+.nav_links:hover{
+    cursor: pointer;
+}
+
+@media screen and (max-width: 910px) {
+  .nav_links {
+    display: none;
+  }
+  .nav_bars_icon {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 910px) {
+  .nav_side_bar {
+    left: -100%;
+  }
+}
+
