@@ -1,5 +1,6 @@
 <?php 
-include 'db.php'
+include 'config.php';
+session_start();
 ?>
 <!doctype html>
 <html>
@@ -17,24 +18,36 @@ include 'db.php'
         <div class=" absolute top-0 left-0 right-0 bottom-0 blue_effect_bg "></div>
       <nav class="flex justify-between h-[10vh] items-center px-8 nav_bg text-white z-10 fixed top-0 left-0 right-0">
         <div class="flex items-center space-x-4">
+        <div class='text-white mr-4 nav_bars_icon hidden'>
+          <i class="text-[22px] fa-solid fa-bars-staggered"></i>
+        </div>
             <img src="https://acoder-dev.vercel.app/static/media/favicon.a9d7f9ee6a3b64ffa82c6d74731e95eb.svg" alt="logo">
-            <h1 class="text-white text-[25px] font-semibold">Acoder</h1>
+            <h1 class="text-white text-[25px] font-semibold cursor-pointer">Acoder</h1>
         </div>
         <div class="flex items-center">
             <ul class="text-white flex gap-8 mr-10 nav_links items-center">
                 <li><a href="#">All Projects</a></li>
-                <li><a href="#">Web Sites</a></li>
-                <li><a href="#">Mobile Apps</a></li>
-                <li><a href="#">Telegram Bots</a></li>
+                <li><a href="./page/websites/.php">Web Sites</a></li>
+                <li><a href="./page/mobile/.php">Mobile Apps</a></li>
+                <li><a href="./page/tg-bots/.php">Telegram Bots</a></li>
             </ul>
-            <a href="./page/login/.php"><button class="bg-[white] py-2 rounded-[20px] px-4 text-[black]">Sign in</button></a>
+            <?php if (isset($_SESSION['user'])): ?>
+    <a href="./page/login/logout.php">
+      <button class="bg-[#d64444] py-2 text-white rounded-[20px] px-4 text-[black] cursor-pointer">Logout</button>
+    </a>
+  <?php else: ?>
+    <a href="./page/login/.php">
+      <button class="bg-[white] py-2 rounded-[20px] px-4 text-[black] cursor-pointer">Sign in</button>
+    </a>
+  <?php endif; ?>
         </div>
      </nav>
         
      
      <div class="flex flex-col items-center justify-center h-[90vh] relative  px-8">
-            <h1 class="text-[50px] text-white font-semibold mb-4">Share Your Programs <br>
-            and Projects With Us !</h1>
+     <h1 class="text-[50px] text-white font-semibold mb-4">
+         <?= isset($_SESSION['user']) ? "Hello" . " ". htmlspecialchars($_SESSION['user']['name']) : 'Share Your Programs<br>and Projects With Us !' ?>
+      </h1>
             <div class="bg-white rounded-[30px]  h-[50px] flex items-center px-2 py-2">
                  <input type="text" placeholder="Search for projects, websites, apps..." class="w-full h-full bg-transparent outline-none text-[20px] px-4">
                     <button class="bg-[#7700e7] text-white px-4 py-2 rounded-[20px] ml-2 flex items-center justify-center gap-1">

@@ -13,8 +13,9 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
     height: 100vh;
+    padding: 10px 30px;
+    overflow-x: hidden; /* Gorizontal scrollni oldini olish */
 }
 
 .container{
@@ -26,6 +27,9 @@ body{
     width: 768px;
     max-width: 100%;
     min-height: 480px;
+    max-height: 480px;
+    display: flex; /* Flexbox qo'shildi */
+    flex-direction: row; /* Desktop holatda yonma-yon */
 }
 
 .container p{
@@ -62,11 +66,21 @@ body{
     text-transform: uppercase;
     margin-top: 10px;
     cursor: pointer;
+    transition: background-color 0.3s ease; /* Hover effektini yumshatish */
+}
+
+.container button:hover{
+    background-color: #6a4caf; /* Hover rangi qo'shildi */
 }
 
 .container button.hidden_btn{
     background-color: transparent;
     border-color: #fff;
+    border: 2px solid #fff; /* Border qalinligi aniqlandi */
+}
+
+.container button.hidden_btn:hover{
+    background-color: rgba(255, 255, 255, 0.1); /* Hidden button uchun hover */
 }
 
 .container form{
@@ -77,6 +91,7 @@ body{
     flex-direction: column;
     padding: 0 40px;
     height: 100%;
+    width: 100%; /* Mobil holatda to'liq kenglik */
 }
 
 .container input{
@@ -95,6 +110,7 @@ body{
     top: 0;
     height: 100%;
     transition: all 0.6s ease-in-out;
+    width: 50%; /* Desktop holatda 50% */
 }
 
 .sign-in{
@@ -145,6 +161,11 @@ body{
     margin: 0 3px;
     width: 40px;
     height: 40px;
+    transition: border-color 0.3s ease; /* Hover effektini yumshatish */
+}
+
+.social-icons a:hover{
+    border-color: #512da8; /* Hover rangi qo'shildi */
 }
 
 .toggle-container{
@@ -211,4 +232,142 @@ body{
 
 .container.active .toggle-right{
     transform: translateX(200%);
+}
+
+
+/* --- Responsive dizayn --- */
+@media (max-width: 768px) {
+    body {
+       padding-top: 100px !important;
+       height: 100vh !important;
+       overflow: hidden;
+      
+    }
+    #container{
+        border-radius: 20px;
+    }
+
+    .container {
+       
+        justify-content: center ;
+        flex-direction: column; 
+        min-height: 100vh; 
+        width: 100%; 
+        border-radius: 0;
+        box-shadow: none; 
+    }
+
+    .form-container {
+        
+        position: static; /* Mobil holatda absolut pozitsiyani o'chirish */
+        width: 100%; /* To'liq kenglik */
+        height: auto; /* Balandlikni avtomatik sozlash */
+        order: 1; /* Formani toggle-containerdan oldin joylashtirish */
+    }
+
+    .sign-in, .sign-up {
+        
+        width: 100%; /* Mobil holatda to'liq kenglik */
+        position: relative; /* Mobil holatda relativ pozitsiya */
+        transform: none !important; /* Transformatsiyani o'chirish */
+        opacity: 1 !important; /* Har doim ko'rinadigan qilish */
+        z-index: 1; /* Z-indexni normallashtirish */
+    }
+
+    /* Faol formani ko'rsatish, boshqasini yashirish */
+    .container:not(.active) .sign-up,
+    .container.active .sign-in {
+        display: none;
+    }
+
+
+    .toggle-container {
+        
+        position: static; /* Mobil holatda absolut pozitsiyani o'chirish */
+        width: 100%; /* To'liq kenglik */
+        height: auto; /* Balandlikni avtomatik sozlash */
+        border-radius: 0; /* Burchaklarni to'g'irlash */
+        order: 2; /* Toggle-container formadan keyin joylashadi (pastda bo'ladi) */
+        min-height: 200px; /* Minimal balandlik berish */
+    }
+
+    .container.active .toggle-container {
+        transform: none; /* Mobil holatda transformatsiyani o'chirish */
+        border-radius: 0;
+    }
+
+    .toggle {
+        border-top-left-radius: 30%;
+        border-top-right-radius: 30%;
+        margin-top: 30px;
+        width: 100%; /* To'liq kenglik */
+        left: 0; /* Positionni normallashtirish */
+        transform: none !important; /* Transformatsiyani o'chirish */
+        height: auto; /* Balandlikni avtomatik sozlash */
+        padding: 20px 0; /* Ichki padding qo'shish */
+    }
+
+    .toggle-panel {
+        position: static; /* Mobil holatda absolut pozitsiyani o'chirish */
+        width: 100%; /* To'liq kenglik */
+        height: auto; /* Balandlikni avtomatik sozlash */
+        transform: none !important; /* Transformatsiyani o'chirish */
+        padding: 20px; /* Paddingni sozlash */
+    }
+
+    .toggle-left, .toggle-right {
+        transform: none !important; /* Mobil holatda transformatsiyani o'chirish */
+        position: static; /* Mobil holatda static pozitsiya */
+    }
+
+    /* Faol toggle panelni ko'rsatish, boshqasini yashirish */
+    .container:not(.active) .toggle-left,
+    .container.active .toggle-right {
+        display: none;
+    }
+
+    .container:not(.active) .toggle-right,
+    .container.active .toggle-left {
+        display: flex; /* Active toggle panelni ko'rsatish */
+    }
+
+    .container h1 {
+        font-size: 26px; /* Mobil sarlavhalar uchun font o'lchamini kamaytirish */
+    }
+
+    .container p {
+        font-size: 13px; /* Mobil matnlar uchun font o'lchamini kamaytirish */
+        margin: 10px 0; /* Mobil marginni sozlash */
+    }
+
+    .container button {
+        padding: 8px 30px; /* Mobil tugmalar uchun paddingni kamaytirish */
+        font-size: 11px; /* Mobil tugmalar uchun font o'lchamini kamaytirish */
+    }
+
+    .container input {
+        padding: 8px 12px; /* Mobil inputlar uchun paddingni kamaytirish */
+        font-size: 12px; /* Mobil inputlar uchun font o'lchamini kamaytirish */
+    }
+}
+
+/* Kichikroq telefonlar uchun qo'shimcha optimizatsiya */
+@media (max-width: 480px) {
+    .container {
+        min-height: auto; /* Kontentga qarab balandlikni sozlash */
+        border-radius: 20px;
+        padding-top: 20px;
+    }
+
+    .toggle-container {
+        min-height: 150px;
+    }
+
+    .container h1 {
+        font-size: 22px;
+    }
+
+    .container p {
+        font-size: 12px;
+    }
 }
